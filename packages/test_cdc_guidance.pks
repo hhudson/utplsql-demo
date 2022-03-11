@@ -1,7 +1,7 @@
 create or replace package test_cdc_guidance is
 
-   --%suite(test_cdc_guidance)
-   --%suitepath(alltests)
+   --%suite(Tests that merely prevent regression)
+   --%suitepath(demo)
 
    --%test
    procedure days_to_separate_scenario1;
@@ -20,6 +20,11 @@ create or replace package test_cdc_guidance is
    
    --%test 
    procedure days_to_separate_scenario6;
+   
+   --%test 
+   procedure days_to_separate_scenario7;
+
+   -- etc
 
 end test_cdc_guidance;
 /

@@ -22,6 +22,24 @@ create or replace package body ut_days_to_separate is
       .to_equal(10);
   end positive_without_masks_separates_for_10_days;
 
+  procedure positive_vaccination_status_does_not_matter
+  is 
+  begin
+    ut.expect(cdc_guidance.days_to_separate(
+                  p_tested_positive    => true, 
+                  p_able_to_mask       => true,
+                  p_vaccine_up_to_date => true
+                  )
+              )
+      .to_equal(
+        cdc_guidance.days_to_separate(
+                  p_tested_positive    => true, 
+                  p_able_to_mask       => true,
+                  p_vaccine_up_to_date => false
+                  )
+      );
+  end positive_vaccination_status_does_not_matter;
+
   procedure exposed_vaccinated_with_mask_does_not_need_to_separate
   is
   begin

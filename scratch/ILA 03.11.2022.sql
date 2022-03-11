@@ -1,0 +1,4 @@
+select * from table(ut.run('test_cdc_guidance'));
+/
+select * from table(ut.run('test_cdc_guidance'));
+/

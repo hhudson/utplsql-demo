@@ -1,7 +1,7 @@
 create or replace package ut_days_to_separate is
 
-   --%suite(ut_days_to_separate)
-   --%suitepath(alltests)
+   --%suite(Tests as documentation)
+   --%suitepath(demo)
 
     --%context(When a person has tested positive for covid)
         --%name(1_positive)
@@ -10,6 +10,8 @@ create or replace package ut_days_to_separate is
         procedure positive_with_masks_separates_for_5_days;
         --%test(but they are not able to mask : Separate for 10 days)
         procedure positive_without_masks_separates_for_10_days;
+        --%test(it does not matter what their vaccination status is)
+        procedure positive_vaccination_status_does_not_matter;
     --%endcontext;
 
     --%context(When a person has merely been exposed to covid)

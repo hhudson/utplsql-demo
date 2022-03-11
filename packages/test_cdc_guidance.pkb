@@ -111,6 +111,24 @@ create or replace package body test_cdc_guidance is
       -- assert
       ut.expect(l_actual).to_equal(l_expected);
    end days_to_separate_scenario6;
+   
+   procedure days_to_separate_scenario7 is
+      l_actual           integer := 0;
+      l_expected         integer := 10;
+      l_days_to_separate number;
+   begin
+      -- populate actual
+      -- cdc_guidance.quarantine_isolation_guidance;
+      l_actual := cdc_guidance.days_to_separate(
+                                p_tested_positive    => false, 
+                                p_exposed            => true,
+                                p_able_to_mask       => false,
+                                p_vaccine_up_to_date => true
+                                );
+
+      -- assert
+      ut.expect(l_actual).to_equal(l_expected);
+   end days_to_separate_scenario7;
 
 end test_cdc_guidance;
 /

@@ -2,16 +2,29 @@ create or replace package body cdc_guidance as
 
   gc_scope_prefix constant varchar2(31) := lower($$plsql_unit) || '.';
 
+  /**
+  * This public function attempts to capture the CDC guidance from the following 
+  * source: https://www.mass.gov/info-details/covid-19-isolation-and-quarantine-guidance-for-the-general-public
+  *
+  * @author Hayden Hudson
+  * @created March 11, 2022
+  * 
+  * @p_tested_positive    → did you test positive for covid?
+  * @p_able_to_mask       → are you able to consistently wear a mask?
+  * @p_exposed            → were you exposed to someone who tested positive for covid?
+  * @p_vaccine_up_to_date → have you received all the recommended vaccinations?
+  * 
+  * @return → number of days to isolate or quarantine
+  */ 
   function days_to_separate(
-    p_tested_positive    in boolean, /* did you test positive for covid?*/
-    p_able_to_mask       in boolean, /* are you able to consistently wear a mask?*/
-    p_exposed            in boolean default null, /* were you exposed to someone who tested positive for covid?*/
-    p_vaccine_up_to_date in boolean default null /* have you received all the recommended vaccinations?*/
+    p_tested_positive    in boolean,
+    p_able_to_mask       in boolean,
+    p_exposed            in boolean default null,
+    p_vaccine_up_to_date in boolean default null
   ) return number
   as
-    l_scope logger_logs.scope%type := gc_scope_prefix || 'quarantine_isolation_guidance';
-    l_params logger.tab_param;
   begin
+
     return
     case  when p_tested_positive
           then case when p_able_to_mask 
@@ -31,11 +44,7 @@ create or replace package body cdc_guidance as
                     end
           else 0
           end;
-     
-  exception
-    when others then
-      logger.log_error('Unhandled Exception', l_scope, null, l_params);
-      raise;
+  
   end days_to_separate;
 
 
