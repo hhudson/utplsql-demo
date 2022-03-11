@@ -1,7 +1,5 @@
 create or replace package body cdc_guidance as
 
-  gc_scope_prefix constant varchar2(31) := lower($$plsql_unit) || '.';
-
   /**
   * This public function attempts to capture the CDC guidance from the following 
   * source: https://www.mass.gov/info-details/covid-19-isolation-and-quarantine-guidance-for-the-general-public
