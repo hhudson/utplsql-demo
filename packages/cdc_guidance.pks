@@ -1,5 +1,14 @@
 create or replace package cdc_guidance as
 
+------------------------------------------------------------------------------
+--  Creator: Hayden Hudson
+--     Date: June 21, 2022
+-- Synopsis:
+--
+-- Procedure, used to set employeed salary grade. 
+ -- see tests : ut_days_to_separate 
+--
+------------------------------------------------------------------------------
 function days_to_separate(
     p_tested_positive    in boolean,
     p_able_to_mask       in boolean,
