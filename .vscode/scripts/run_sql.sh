@@ -30,7 +30,8 @@ set define off
 --
 -- Set any alter session statements here (examples below)
 -- alter session set plsql_ccflags = 'dev_env:true';
--- alter session set plsql_warnings = 'ENABLE:ALL';
+ALTER SESSION SET PLSQL_WARNINGS = 'ENABLE:ALL';
+ALTER SESSION SET PLSCOPE_SETTINGS='IDENTIFIERS:ALL, STATEMENTS:ALL';
 -- 
 -- #38: This will raise a warning message in SQL*Plus but worth keeping in to encourage use if using SQLcl to compile
 set codescan all
